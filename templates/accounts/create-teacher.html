@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Signup</title>
+</head>
+<body>
+    <h1>Teacher Signup</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="id_{{ field.name }}">{{ field.label }}</label>
+            <input type="{{ field.field.widget.input_type }}"
+                   class="form-control"
+                   name="{{ field.name }}"
+                   id="id_{{ field.name }}"
+                   placeholder="{{ field.field.widget.attrs.placeholder }}">
+            {% for error in field.errors %}
+            <small class="text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <button class="btn btn-success btn-block" type="submit">{{ title }}</button>
+    </form>
+</body>
+</html>
